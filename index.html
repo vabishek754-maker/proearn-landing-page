@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title id="page-title">Start Earning Online | Exclusive Community</title>
+    <title id="page-title">Start Earning Online | ProEarn Community</title>
     
+    <link rel="icon" type="image/png" href="favicon.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -68,7 +70,8 @@
         .hero-title span { color: var(--primary); }
         .hero-subtitle { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 32px; font-weight: 500; max-width: 90%; line-height: 1.6; }
         .hero-img-container { position: relative; z-index: 2; }
-        /* FIX: Hardcoded soft blue glow to prevent overwhelming orange in Variant B */
+        
+        /* Soft blue glow (Safe for Variant B) */
         .hero-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 100%; background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, rgba(255,255,255,0) 70%); z-index: -1; }
         .hero-image { border-radius: 20px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); border: 4px solid white; width: 100%; }
 
@@ -108,7 +111,7 @@
         .svg-icon { width: 20px; height: 20px; fill: currentColor; }
         .check-icon { width: 18px; height: 18px; fill: var(--accent-green); }
 
-        /* A/B Variant Logic - Hides elements marked for the wrong variant */
+        /* A/B Variant Logic */
         body.v-b .show-only-a { display: none !important; }
         body:not(.v-b) .show-only-b { display: none !important; }
 
@@ -134,7 +137,7 @@
 
     <nav class="navbar fixed-top navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand dyn-brand" href="#home">Brand Name</a>
+            <a class="navbar-brand dyn-brand" href="#home">ProEarn Community</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <svg class="svg-icon" style="width: 28px; height: 28px;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
@@ -246,8 +249,8 @@
 
     <footer class="footer">
         <div class="container">
-            <h4 class="mb-4 dyn-brand">Brand Name</h4>
-            <div class="footer-links mb-4"><a href="#about">Overview</a><a href="#proof">Proof</a><a href="#">Privacy Policy</a></div>
+            <h4 class="mb-4 dyn-brand">ProEarn Community</h4>
+            <div class="footer-links mb-4"><a href="#about">Overview</a><a href="#proof">Proof</a><a href="privacy.html">Privacy Policy</a></div>
             <div class="disclaimer"><strong>*Meta Disclaimer</strong><br>This site is not a part of the Facebook website or Facebook Inc. Additionally, This site is NOT endorsed by Facebook in any way. FACEBOOK is a trademark of FACEBOOK, Inc.</div>
             <p class="text-muted mt-4 mb-0 fw-bold" style="font-size: 0.8rem;">Secure • Private • Trusted</p>
         </div>
@@ -272,17 +275,15 @@
         // --- CORE LOGIC ENGINE (DO NOT EDIT BELOW) ---
         document.addEventListener("DOMContentLoaded", function() {
             
-            // FIX 3: Fallback check for missing Telegram link
             if (!TEMPLATE_CONFIG.telegramLink || TEMPLATE_CONFIG.telegramLink.trim() === "") {
                 console.warn("⚠️ Telegram link is missing in TEMPLATE_CONFIG!");
                 TEMPLATE_CONFIG.telegramLink = "#"; 
             }
 
-            // 1. Apply Master Data
             document.title = TEMPLATE_CONFIG.brandName + " | Exclusive Community";
+            // Dynamically applies brand name (Safe to keep even if hardcoded above)
             document.querySelectorAll('.dyn-brand').forEach(el => el.textContent = TEMPLATE_CONFIG.brandName);
             
-            // FIX 2: Security attributes added to dynamic links
             document.querySelectorAll('.dyn-link').forEach(el => {
                 el.href = TEMPLATE_CONFIG.telegramLink;
                 if (TEMPLATE_CONFIG.telegramLink !== "#") {
@@ -291,7 +292,6 @@
                 }
             });
 
-            // 2. A/B Testing Logic Check
             const urlParams = new URLSearchParams(window.location.search);
             const isVariantB = urlParams.get('v') === 'b';
             let activeVariantName = 'VariantA';
@@ -308,7 +308,6 @@
                 }
             }
 
-            // 3. Meta Pixel Injection 
             if (TEMPLATE_CONFIG.metaPixelId.trim() !== "") {
                 fbq('init', TEMPLATE_CONFIG.metaPixelId);
                 fbq('track', 'PageView');
@@ -321,7 +320,6 @@
                 console.log("Meta Pixel disabled: No ID provided in config.");
             }
 
-            // 4. Scrollspy & Mobile Menu logic
             const sections = document.querySelectorAll("section");
             const navLinks = document.querySelectorAll(".nav-item-scroll");
             const navBarCollapse = document.getElementById('navbarNav');
@@ -343,7 +341,6 @@
                 });
             });
 
-            // 5. Authentic Countdown Timer Logic
             let timeInSecs = 2 * 60 * 60 + 15 * 60 + 45; 
             const hEl = document.getElementById('hours'), mEl = document.getElementById('minutes'), sEl = document.getElementById('seconds');
 
