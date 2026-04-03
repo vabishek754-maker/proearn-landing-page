@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title id="page-title">Start Earning Online | Exclusive Community</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <script id="pixel-script-placeholder"></script>
+
+    <style>
+        :root {
+            /* Variant A Colors (Default SaaS Blue) */
+            --primary-a: #0ea5e9; 
+            --primary-hover-a: #0284c7;
+            
+            /* Variant B Colors (High Contrast Orange) */
+            --primary-b: #f59e0b; 
+            --primary-hover-b: #d97706;
+
+            /* Active Theme Variables (Controlled by JS) */
+            --primary: var(--primary-a);
+            --primary-hover: var(--primary-hover-a);
+
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+        }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        html, body { overflow-x: hidden; width: 100%; position: relative; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5 { font-weight: 800; letter-spacing: -0.03em; color: var(--text-dark); }
+
+        /* Navbar */
+        .navbar { background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #e2e8f0; padding: 12px 0; transition: all 0.3s ease; }
+        .navbar-brand { font-weight: 800; font-size: 22px; color: var(--text-dark) !important; }
+        .navbar-toggler { border: none; padding: 0.25rem 0.5rem; box-shadow: none; }
+        .nav-link { font-weight: 500; color: var(--text-muted) !important; font-size: 0.95rem; margin: 0 10px; transition: color 0.3s ease; position: relative; }
+        .nav-link:hover, .nav-link.active { color: var(--primary) !important; }
+        .nav-link.active { font-weight: 700; }
+        .nav-link.active::after { content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); width: 20px; height: 3px; background-color: var(--primary); border-radius: 2px; }
+
+        /* Buttons */
+        .btn-outline-primary { border: 1px solid var(--text-muted); color: var(--text-dark); border-radius: 50px; padding: 8px 24px; font-weight: 600; text-decoration: none; transition: all 0.3s; }
+        .btn-outline-primary:hover { background: var(--bg-light); border-color: var(--text-dark); color: var(--text-dark); }
+        
+        .btn-primary { background-color: var(--primary); border: none; color: white; font-weight: 700; padding: 16px 32px; border-radius: 50px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.2); transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; font-size: 1.05rem; }
+        .btn-primary:hover { background-color: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 15px 30px -5px rgba(0,0,0,0.3); color: white; }
+
+        /* Hero */
+        .hero-section { padding: 140px 0 120px; background: radial-gradient(circle at top right, #f0f9ff 0%, var(--bg-white) 100%); position: relative; }
+        .hero-title { font-size: 3.5rem; line-height: 1.1; margin-bottom: 24px; }
+        .hero-title span { color: var(--primary); }
+        .hero-subtitle { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 32px; font-weight: 500; max-width: 90%; line-height: 1.6; }
+        .hero-img-container { position: relative; z-index: 2; }
+        /* FIX: Hardcoded soft blue glow to prevent overwhelming orange in Variant B */
+        .hero-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 100%; background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, rgba(255,255,255,0) 70%); z-index: -1; }
+        .hero-image { border-radius: 20px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); border: 4px solid white; width: 100%; }
+
+        /* Stats & Sections */
+        .stats-wrapper { margin-top: -60px; position: relative; z-index: 10; }
+        .stats-card { background: var(--bg-white); border-radius: 20px; box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08); padding: 35px 20px; display: flex; justify-content: space-around; align-items: center; border: 1px solid #f1f5f9; }
+        .stat-item { text-align: center; flex: 1; border-right: 1px solid #e2e8f0; }
+        .stat-item:last-child { border-right: none; }
+        .stat-title { font-size: 1.5rem; font-weight: 800; color: var(--text-dark); margin-bottom: 4px; }
+        .stat-sub { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+        section { padding: 100px 0; }
+
+        /* Cards */
+        .feature-card { background: var(--bg-white); padding: 40px 30px; border-radius: 16px; box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05); border: 1px solid #f1f5f9; height: 100%; transition: 0.3s; text-align: center; }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08); }
+        .feature-icon { width: 48px; height: 48px; color: var(--primary); margin-bottom: 20px; transition: color 0.3s ease; }
+        .feature-card h4 { font-size: 1.1rem; margin-bottom: 8px; }
+        .feature-card p, .proof-text p { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+
+        .proof-card { background: var(--bg-white); border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); text-align: center; height: 100%; }
+        .proof-img { width: 100%; height: 250px; object-fit: cover; object-position: top; border-bottom: 1px solid #e2e8f0; }
+        .proof-text { padding: 16px; }
+        .proof-text h5 { font-size: 0.95rem; margin-bottom: 4px; }
+
+        /* CTA & Footer */
+        .cta-section { background: linear-gradient(135deg, #f8fafc 0%, #f0f9ff 100%); text-align: center; border-top: 1px solid #e2e8f0; }
+        .countdown-box { display: flex; justify-content: center; gap: 15px; margin: 20px 0 30px; }
+        .time-slot { background: var(--bg-white); border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px 15px; min-width: 70px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        .time-slot span { display: block; font-size: 1.5rem; font-weight: 800; color: var(--primary); transition: color 0.3s ease; }
+        .time-slot small { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600; }
+        .urgency-text { color: var(--accent-red); font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; gap: 6px; }
+
+        .footer { padding: 50px 0 30px; background: var(--bg-white); text-align: center; border-top: 1px solid #e2e8f0; }
+        .footer-links a { color: var(--text-dark); text-decoration: none; font-weight: 500; font-size: 0.9rem; margin: 0 15px; }
+        .disclaimer { font-size: 0.75rem; color: var(--text-muted); max-width: 800px; margin: 30px auto 10px; line-height: 1.6; }
+
+        .svg-icon { width: 20px; height: 20px; fill: currentColor; }
+        .check-icon { width: 18px; height: 18px; fill: var(--accent-green); }
+
+        /* A/B Variant Logic - Hides elements marked for the wrong variant */
+        body.v-b .show-only-a { display: none !important; }
+        body:not(.v-b) .show-only-b { display: none !important; }
+
+        @media (max-width: 991px) {
+            .navbar-collapse { background: white; padding: 15px; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); margin-top: 10px; text-align: center; }
+            .nav-link.active::after { display: none; }
+            .nav-link { margin: 10px 0; }
+        }
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .hero-section { padding: 120px 0 80px; text-align: center; }
+            .hero-subtitle { margin: 0 auto 24px; }
+            .stats-card { flex-direction: column; gap: 20px; padding: 30px; }
+            .stat-item { border-right: none; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px; width: 100%; }
+            .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
+            .hero-img-container { margin-top: 50px; }
+            .time-slot { min-width: 60px; padding: 8px 10px; }
+            .time-slot span { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body id="home">
+
+    <nav class="navbar fixed-top navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand dyn-brand" href="#home">Brand Name</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <svg class="svg-icon" style="width: 28px; height: 28px;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center mb-2 mb-lg-0 me-lg-3">
+                    <li class="nav-item"><a href="#about" class="nav-link nav-item-scroll">Overview</a></li>
+                    <li class="nav-item"><a href="#proof" class="nav-link nav-item-scroll">Proof</a></li>
+                </ul>
+                <a href="#" class="btn btn-outline-primary dyn-link d-inline-block mt-3 mt-lg-0">Join Free</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="hero-title show-only-a">Start Earning Online with Our <span>Exclusive Telegram Group</span> 🚀</h1>
+                    <h1 class="hero-title show-only-b">Unlock Your Financial Freedom with <span>Proven Strategies</span> 📈</h1>
+                    
+                    <p class="hero-subtitle">Get daily earning opportunities, simple methods, and step-by-step guidance — even if you’re a beginner.</p>
+                    
+                    <a href="#" class="btn btn-primary dyn-link btn-cta mb-4 w-100 w-sm-auto">
+                        <span class="dyn-cta-text">Join Telegram & Start Earning</span>
+                        <svg viewBox="0 0 24 24" class="svg-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.18-.08-.05-.19-.02-.27 0-.11.03-1.9 1.21-3.37 2.2-.21.14-.4.21-.57.21-.19 0-.55-.11-.82-.2-.33-.11-.59-.16-.57-.35.01-.09.14-.19.39-.3 1.52-.66 5.08-2.2 6.4-2.75 1.3-.54 1.57-.64 1.75-.64.13 0 .42.03.54.17.1.12.13.28.11.45z"/></svg>
+                    </a>
+                    
+                    <div class="d-flex align-items-center justify-content-lg-start justify-content-center gap-2">
+                        <div class="d-flex fw-bold text-dark align-items-center">
+                            <svg viewBox="0 0 24 24" class="check-icon me-2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        </div>
+                        <span style="font-size: 0.9rem; font-weight: 700; color: var(--accent-green);">1000+ members already earning</span>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-img-container">
+                        <div class="hero-glow"></div>
+                        <img src="IMG_2257.webp" alt="Online earning proof screenshot" class="hero-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container stats-wrapper">
+        <div class="stats-card">
+            <div class="stat-item"><div class="stat-title">1,000+</div><div class="stat-sub">Active Members</div></div>
+            <div class="stat-item"><div class="stat-title">Daily</div><div class="stat-sub">Actionable Signals</div></div>
+            <div class="stat-item"><div class="stat-title">Verified</div><div class="stat-sub">Winning Strategies</div></div>
+        </div>
+    </div>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="mb-2">How It Works.</h2>
+            <p class="text-muted mb-5">Everything you need to succeed, streamlined into one private community.</p>
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"></path></svg>
+                        <h4>BEGINNER FRIENDLY</h4><p>Zero prior experience required. Just follow the steps.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"></path></svg>
+                        <h4>DAILY SIGNALS</h4><p>Get high-accuracy alerts delivered straight to your phone.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"></path></svg>
+                        <h4>SECURE & PRIVATE</h4><p>100% encrypted, private community for your peace of mind.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="proof" class="proof-section">
+        <div class="container text-center">
+            <h2 class="mb-2">Real Members. Real Results.</h2>
+            <p class="text-muted fw-bold" style="font-size: 0.75rem; text-transform: uppercase;">*Proof of earnings from community member submissions. Individual results will vary.</p>
+            <div class="row g-4 mt-4">
+                <div class="col-lg-3 col-md-6"><div class="proof-card"><img src="IMG_2262.webp" alt="Online earning proof screenshot" class="proof-img" loading="lazy"><div class="proof-text"><h5>ACCURATE TRENDS</h5><p>Verified Method</p></div></div></div>
+                <div class="col-lg-3 col-md-6"><div class="proof-card"><img src="IMG_2258.webp" alt="Online earning proof screenshot" class="proof-img" loading="lazy"><div class="proof-text"><h5>COMMUNITY EARNINGS</h5><p>(+₹5,880)</p></div></div></div>
+                <div class="col-lg-3 col-md-6"><div class="proof-card"><img src="IMG_2259.webp" alt="Online earning proof screenshot" class="proof-img" loading="lazy"><div class="proof-text"><h5>LIFESTYLE UPGRADES</h5><p>Member Submissions</p></div></div></div>
+                <div class="col-lg-3 col-md-6"><div class="proof-card"><img src="IMG_2260.webp" alt="Online earning proof screenshot" class="proof-img" loading="lazy"><div class="proof-text"><h5>SUCCESSFUL WITHDRAWALS</h5><p>Bank Transfers</p></div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="join" class="cta-section">
+        <div class="container">
+            <h2 class="mb-3">Ready to Start Earning Today?</h2>
+            <p class="text-muted mb-4 col-lg-6 mx-auto">Join a private community and start earning with proven methods today.</p>
+            <div class="urgency-text"><svg viewBox="0 0 24 24" class="svg-icon" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>Registration window closing soon:</div>
+            <div class="countdown-box">
+                <div class="time-slot"><span id="hours">02</span><small>Hours</small></div>
+                <div class="time-slot"><span id="minutes">15</span><small>Mins</small></div>
+                <div class="time-slot"><span id="seconds">45</span><small>Secs</small></div>
+            </div>
+            <a href="#" class="btn btn-primary btn-lg px-5 py-3 dyn-link btn-cta">
+                <span class="dyn-cta-text">Join Telegram & Start Earning</span>
+                <svg viewBox="0 0 24 24" class="svg-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.18-.08-.05-.19-.02-.27 0-.11.03-1.9 1.21-3.37 2.2-.21.14-.4.21-.57.21-.19 0-.55-.11-.82-.2-.33-.11-.59-.16-.57-.35.01-.09.14-.19.39-.3 1.52-.66 5.08-2.2 6.4-2.75 1.3-.54 1.57-.64 1.75-.64.13 0 .42.03.54.17.1.12.13.28.11.45z"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <h4 class="mb-4 dyn-brand">Brand Name</h4>
+            <div class="footer-links mb-4"><a href="#about">Overview</a><a href="#proof">Proof</a><a href="#">Privacy Policy</a></div>
+            <div class="disclaimer"><strong>*Meta Disclaimer</strong><br>This site is not a part of the Facebook website or Facebook Inc. Additionally, This site is NOT endorsed by Facebook in any way. FACEBOOK is a trademark of FACEBOOK, Inc.</div>
+            <p class="text-muted mt-4 mb-0 fw-bold" style="font-size: 0.8rem;">Secure • Private • Trusted</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const TEMPLATE_CONFIG = {
+            // 1. General Settings
+            brandName: "ProEarn Community",
+            telegramLink: "https://t.me/+1uVvf-bcREhjYmU1",
+            metaPixelId: "", // LEAVE BLANK IF NO PIXEL YET. E.g., "1234567890"
+            
+            // 2. Variant B Overrides (Loads if URL has ?v=b)
+            variantB: {
+                ctaText: "Get Instant Access Now",
+                themeColor: "orange" // Swaps blue buttons to high-converting orange
+            }
+        };
+
+        // --- CORE LOGIC ENGINE (DO NOT EDIT BELOW) ---
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            // FIX 3: Fallback check for missing Telegram link
+            if (!TEMPLATE_CONFIG.telegramLink || TEMPLATE_CONFIG.telegramLink.trim() === "") {
+                console.warn("⚠️ Telegram link is missing in TEMPLATE_CONFIG!");
+                TEMPLATE_CONFIG.telegramLink = "#"; 
+            }
+
+            // 1. Apply Master Data
+            document.title = TEMPLATE_CONFIG.brandName + " | Exclusive Community";
+            document.querySelectorAll('.dyn-brand').forEach(el => el.textContent = TEMPLATE_CONFIG.brandName);
+            
+            // FIX 2: Security attributes added to dynamic links
+            document.querySelectorAll('.dyn-link').forEach(el => {
+                el.href = TEMPLATE_CONFIG.telegramLink;
+                if (TEMPLATE_CONFIG.telegramLink !== "#") {
+                    el.target = "_blank";
+                    el.rel = "noopener noreferrer";
+                }
+            });
+
+            // 2. A/B Testing Logic Check
+            const urlParams = new URLSearchParams(window.location.search);
+            const isVariantB = urlParams.get('v') === 'b';
+            let activeVariantName = 'VariantA';
+
+            if (isVariantB) {
+                activeVariantName = 'VariantB';
+                document.body.classList.add('v-b'); 
+                
+                document.querySelectorAll('.dyn-cta-text').forEach(el => el.textContent = TEMPLATE_CONFIG.variantB.ctaText);
+                
+                if (TEMPLATE_CONFIG.variantB.themeColor === 'orange') {
+                    document.documentElement.style.setProperty('--primary', 'var(--primary-b)');
+                    document.documentElement.style.setProperty('--primary-hover', 'var(--primary-hover-b)');
+                }
+            }
+
+            // 3. Meta Pixel Injection 
+            if (TEMPLATE_CONFIG.metaPixelId.trim() !== "") {
+                fbq('init', TEMPLATE_CONFIG.metaPixelId);
+                fbq('track', 'PageView');
+                fbq('trackCustom', 'PageView_' + activeVariantName);
+                
+                document.querySelectorAll('.btn-cta').forEach(btn => {
+                    btn.addEventListener('click', () => fbq('track', 'Lead'));
+                });
+            } else {
+                console.log("Meta Pixel disabled: No ID provided in config.");
+            }
+
+            // 4. Scrollspy & Mobile Menu logic
+            const sections = document.querySelectorAll("section");
+            const navLinks = document.querySelectorAll(".nav-item-scroll");
+            const navBarCollapse = document.getElementById('navbarNav');
+
+            window.addEventListener("scroll", () => {
+                let current = "";
+                sections.forEach(sec => {
+                    if (pageYOffset >= (sec.offsetTop - 150)) current = sec.getAttribute("id");
+                });
+                navLinks.forEach(link => {
+                    link.classList.remove("active");
+                    if (link.getAttribute("href").includes(current) && current !== "") link.classList.add("active");
+                });
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navBarCollapse.classList.contains('show')) new bootstrap.Collapse(navBarCollapse, { toggle: false }).hide();
+                });
+            });
+
+            // 5. Authentic Countdown Timer Logic
+            let timeInSecs = 2 * 60 * 60 + 15 * 60 + 45; 
+            const hEl = document.getElementById('hours'), mEl = document.getElementById('minutes'), sEl = document.getElementById('seconds');
+
+            const timer = setInterval(() => {
+                if (timeInSecs <= 0) { clearInterval(timer); return; }
+                let h = Math.floor(timeInSecs / 3600), m = Math.floor((timeInSecs % 3600) / 60), s = timeInSecs % 60;
+                hEl.textContent = h < 10 ? '0' + h : h; mEl.textContent = m < 10 ? '0' + m : m; sEl.textContent = s < 10 ? '0' + s : s;
+                timeInSecs--;
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
