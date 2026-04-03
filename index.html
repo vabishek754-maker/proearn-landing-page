@@ -54,12 +54,16 @@
         .hero-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 100%; background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, rgba(255,255,255,0) 70%); z-index: -1; }
         .hero-image { border-radius: 20px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); border: 4px solid white; width: 100%; }
         
+        /* ✅ UPGRADED: Stats Section with Icons and Animation Styles */
         .stats-wrapper { margin-top: -60px; position: relative; z-index: 10; }
         .stats-card { background: var(--bg-white); border-radius: 20px; box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08); padding: 35px 20px; display: flex; justify-content: space-around; align-items: center; border: 1px solid #f1f5f9; }
-        .stat-item { text-align: center; flex: 1; border-right: 1px solid #e2e8f0; }
+        .stat-item { text-align: center; flex: 1; border-right: 1px solid #e2e8f0; display: flex; flex-direction: column; align-items: center; }
         .stat-item:last-child { border-right: none; }
-        .stat-title { font-size: 1.5rem; font-weight: 800; color: var(--text-dark); margin-bottom: 4px; }
-        .stat-sub { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+        .stat-icon { width: 32px; height: 32px; color: var(--primary); margin-bottom: 12px; background: #f0f9ff; padding: 6px; border-radius: 8px; }
+        .stat-title { font-size: 1.75rem; font-weight: 800; color: var(--text-dark); margin-bottom: 2px; display: flex; align-items: baseline; justify-content: center; }
+        .stat-title span { font-size: 1.2rem; color: var(--primary); margin-left: 2px; }
+        .stat-sub { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        
         section { padding: 100px 0; }
         
         .feature-card { background: var(--bg-white); padding: 40px 30px; border-radius: 16px; box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05); border: 1px solid #f1f5f9; height: 100%; transition: 0.3s; text-align: center; }
@@ -94,7 +98,7 @@
         body:not(.v-b) .show-only-b { display: none !important; }
         
         @media (max-width: 991px) { .navbar-collapse { background: white; padding: 15px; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); margin-top: 10px; text-align: center; } .nav-link.active::after { display: none; } .nav-link { margin: 10px 0; } }
-        @media (max-width: 768px) { .hero-title { font-size: 2.5rem; } .hero-section { padding: 120px 0 80px; text-align: center; } .hero-subtitle { margin: 0 auto 24px; } .stats-card { flex-direction: column; gap: 20px; padding: 30px; } .stat-item { border-right: none; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px; width: 100%; } .stat-item:last-child { border-bottom: none; padding-bottom: 0; } .hero-img-container { margin-top: 50px; } .time-slot { min-width: 60px; padding: 8px 10px; } .time-slot span { font-size: 1.3rem; } }
+        @media (max-width: 768px) { .hero-title { font-size: 2.5rem; } .hero-section { padding: 120px 0 80px; text-align: center; } .hero-subtitle { margin: 0 auto 24px; } .stats-card { flex-direction: column; gap: 24px; padding: 30px; } .stat-item { border-right: none; border-bottom: 1px solid #e2e8f0; padding-bottom: 24px; width: 100%; } .stat-item:last-child { border-bottom: none; padding-bottom: 0; } .hero-img-container { margin-top: 50px; } .time-slot { min-width: 60px; padding: 8px 10px; } .time-slot span { font-size: 1.3rem; } }
     </style>
 </head>
 <body id="home">
@@ -152,9 +156,21 @@
 
     <div class="container stats-wrapper">
         <div class="stats-card">
-            <div class="stat-item"><div class="stat-title">1,000+</div><div class="stat-sub">Active Members</div></div>
-            <div class="stat-item"><div class="stat-title">Daily</div><div class="stat-sub">Actionable Signals</div></div>
-            <div class="stat-item"><div class="stat-title">Verified</div><div class="stat-sub">Winning Strategies</div></div>
+            <div class="stat-item">
+                <svg class="stat-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                <div class="stat-title"><div class="counter" data-target="1000">0</div><span>+</span></div>
+                <div class="stat-sub">Active Members</div>
+            </div>
+            <div class="stat-item">
+                <svg class="stat-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                <div class="stat-title"><div class="counter" data-target="100">0</div><span>%</span></div>
+                <div class="stat-sub">Actionable Signals</div>
+            </div>
+            <div class="stat-item">
+                <svg class="stat-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                <div class="stat-title" style="color: var(--accent-green);">Verified</div>
+                <div class="stat-sub">Winning Strategies</div>
+            </div>
         </div>
     </div>
 
@@ -299,18 +315,16 @@
         // --- CORE LOGIC ENGINE (DO NOT EDIT BELOW) ---
         document.addEventListener("DOMContentLoaded", function() {
             
+            // Link & Brand Setup
             if (!TEMPLATE_CONFIG.telegramLink || TEMPLATE_CONFIG.telegramLink.trim() === "") {
                 console.warn("⚠️ Telegram link is missing in TEMPLATE_CONFIG!");
                 TEMPLATE_CONFIG.telegramLink = "https://t.me/+1uVvf-bcREhjYmU1"; 
             }
-
             document.title = TEMPLATE_CONFIG.brandName + " | Exclusive Community";
             document.querySelectorAll('.dyn-brand').forEach(el => el.textContent = TEMPLATE_CONFIG.brandName);
-            
-            document.querySelectorAll('.dyn-link').forEach(el => {
-                el.href = TEMPLATE_CONFIG.telegramLink;
-            });
+            document.querySelectorAll('.dyn-link').forEach(el => { el.href = TEMPLATE_CONFIG.telegramLink; });
 
+            // A/B Variant Logic
             const urlParams = new URLSearchParams(window.location.search);
             const isVariantB = urlParams.get('v') === 'b';
             let activeVariantName = 'VariantA';
@@ -318,20 +332,18 @@
             if (isVariantB) {
                 activeVariantName = 'VariantB';
                 document.body.classList.add('v-b'); 
-                
                 document.querySelectorAll('.dyn-cta-text').forEach(el => el.textContent = TEMPLATE_CONFIG.variantB.ctaText);
-                
                 if (TEMPLATE_CONFIG.variantB.themeColor === 'orange') {
                     document.documentElement.style.setProperty('--primary', 'var(--primary-b)');
                     document.documentElement.style.setProperty('--primary-hover', 'var(--primary-hover-b)');
                 }
             }
 
+            // Meta Pixel Logic
             if (TEMPLATE_CONFIG.metaPixelId.trim() !== "") {
                 fbq('init', TEMPLATE_CONFIG.metaPixelId);
                 fbq('track', 'PageView');
                 fbq('trackCustom', 'PageView_' + activeVariantName);
-                
                 document.querySelectorAll('.btn-cta').forEach(btn => {
                     btn.addEventListener('click', () => fbq('track', 'Lead'));
                 });
@@ -339,15 +351,14 @@
                 console.log("Meta Pixel disabled: No ID provided in config.");
             }
 
+            // Scrollspy & Nav Logic
             const sections = document.querySelectorAll("section");
             const navLinks = document.querySelectorAll(".nav-item-scroll");
             const navBarCollapse = document.getElementById('navbarNav');
 
             window.addEventListener("scroll", () => {
                 let current = "";
-                sections.forEach(sec => {
-                    if (pageYOffset >= (sec.offsetTop - 150)) current = sec.getAttribute("id");
-                });
+                sections.forEach(sec => { if (pageYOffset >= (sec.offsetTop - 150)) current = sec.getAttribute("id"); });
                 navLinks.forEach(link => {
                     link.classList.remove("active");
                     if (link.getAttribute("href").includes(current) && current !== "") link.classList.add("active");
@@ -360,15 +371,50 @@
                 });
             });
 
+            // Countdown Logic
             let timeInSecs = 2 * 60 * 60 + 15 * 60 + 45; 
             const hEl = document.getElementById('hours'), mEl = document.getElementById('minutes'), sEl = document.getElementById('seconds');
-
             const timer = setInterval(() => {
                 if (timeInSecs <= 0) { clearInterval(timer); return; }
                 let h = Math.floor(timeInSecs / 3600), m = Math.floor((timeInSecs % 3600) / 60), s = timeInSecs % 60;
                 hEl.textContent = h < 10 ? '0' + h : h; mEl.textContent = m < 10 ? '0' + m : m; sEl.textContent = s < 10 ? '0' + s : s;
                 timeInSecs--;
             }, 1000);
+
+            // ✅ UPGRADED: Animated Count-Up Logic for Stats
+            const counters = document.querySelectorAll('.counter');
+            const speed = 200; // Lower is faster
+
+            const animateCounters = () => {
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    const updateCount = () => {
+                        const current = +counter.innerText.replace(/,/g, '');
+                        const inc = target / speed;
+                        if (current < target) {
+                            counter.innerText = Math.ceil(current + inc).toLocaleString();
+                            setTimeout(updateCount, 10);
+                        } else {
+                            counter.innerText = target.toLocaleString();
+                        }
+                    };
+                    updateCount();
+                });
+            }
+
+            // Intersection Observer to trigger animation when scrolled into view
+            const statObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        statObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            const statsSection = document.querySelector('.stats-wrapper');
+            if(statsSection) statObserver.observe(statsSection);
+
         });
     </script>
 </body>
