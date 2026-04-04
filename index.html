@@ -34,8 +34,6 @@
         h1, h2, h3, h4, h5 { font-weight: 800; letter-spacing: -0.03em; color: var(--text-dark); }
         
         .navbar { background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #e2e8f0; padding: 12px 0; transition: all 0.3s ease; }
-        
-        /* ✅ UPGRADED: Brand text styling (removed !important to allow dynamic span color) */
         .navbar-brand { font-weight: 800; font-size: 22px; color: var(--text-dark); text-decoration: none; }
         .navbar-brand:hover { color: var(--text-dark); }
         .brand-highlight { color: var(--primary); }
@@ -77,13 +75,26 @@
         .feature-card p, .proof-text p { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
         
         .proof-card { background: var(--bg-white); border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); text-align: left; height: 100%; }
-        .proof-img-wrapper { position: relative; }
-        .proof-overlay-label { position: absolute; top: 12px; right: 12px; background: rgba(15, 23, 42, 0.85); color: #ffffff; padding: 4px 10px; font-size: 0.65rem; font-weight: 700; border-radius: 4px; text-transform: uppercase; backdrop-filter: blur(4px); letter-spacing: 0.5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-        .proof-img { width: 100%; height: 250px; object-fit: cover; object-position: top; border-bottom: 1px solid #e2e8f0; }
+        .proof-img-wrapper { position: relative; overflow: hidden; }
+        .proof-overlay-label { position: absolute; top: 12px; right: 12px; background: rgba(15, 23, 42, 0.85); color: #ffffff; padding: 4px 10px; font-size: 0.65rem; font-weight: 700; border-radius: 4px; text-transform: uppercase; backdrop-filter: blur(4px); letter-spacing: 0.5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 2; pointer-events: none; }
+        
+        /* ✅ FIX: Added Zoom cursor and hover effect for Lightbox feature */
+        .proof-img { width: 100%; height: 220px; object-fit: cover; object-position: center; border-bottom: 1px solid #e2e8f0; background-color: #f1f5f9; cursor: zoom-in; transition: transform 0.4s ease; }
+        .proof-img:hover { transform: scale(1.05); }
+        
         .proof-text { padding: 18px; }
         .real-member-tag { font-size: 0.7rem; color: var(--accent-green); font-weight: 700; margin-bottom: 6px; display: block; text-transform: uppercase; letter-spacing: 0.5px; }
         .proof-text h5 { font-size: 1rem; margin-bottom: 4px; }
         
+        /* ✅ ADDED: Lightbox Overlay Styles */
+        .lightbox-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.95); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.3s ease; backdrop-filter: blur(8px); }
+        .lightbox-overlay.active { opacity: 1; visibility: visible; }
+        .lightbox-content { position: relative; max-width: 90%; max-height: 90vh; }
+        .lightbox-img { max-width: 100%; max-height: 90vh; border-radius: 12px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); transform: scale(0.95); transition: transform 0.3s ease; object-fit: contain; }
+        .lightbox-overlay.active .lightbox-img { transform: scale(1); }
+        .lightbox-close { position: absolute; top: -40px; right: 0; color: white; background: none; border: none; font-size: 2.5rem; cursor: pointer; line-height: 1; padding: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.5); transition: color 0.2s; }
+        .lightbox-close:hover { color: var(--primary); }
+
         .cta-section { background: linear-gradient(135deg, #f8fafc 0%, #f0f9ff 100%); text-align: center; border-top: 1px solid #e2e8f0; }
         .countdown-box { display: flex; justify-content: center; gap: 15px; margin: 20px 0 30px; }
         .time-slot { background: var(--bg-white); border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px 15px; min-width: 70px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
@@ -102,7 +113,7 @@
         body:not(.v-b) .show-only-b { display: none !important; }
         
         @media (max-width: 991px) { .navbar-collapse { background: white; padding: 15px; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); margin-top: 10px; text-align: center; } .nav-link.active::after { display: none; } .nav-link { margin: 10px 0; } }
-        @media (max-width: 768px) { .hero-title { font-size: 2.5rem; } .hero-section { padding: 120px 0 80px; text-align: center; } .hero-subtitle { margin: 0 auto 24px; } .stats-card { flex-direction: column; gap: 24px; padding: 30px; } .stat-item { border-right: none; border-bottom: 1px solid #e2e8f0; padding-bottom: 24px; width: 100%; } .stat-item:last-child { border-bottom: none; padding-bottom: 0; } .hero-img-container { margin-top: 50px; } .time-slot { min-width: 60px; padding: 8px 10px; } .time-slot span { font-size: 1.3rem; } }
+        @media (max-width: 768px) { .hero-title { font-size: 2.5rem; } .hero-section { padding: 120px 0 80px; text-align: center; } .hero-subtitle { margin: 0 auto 24px; } .stats-card { flex-direction: column; gap: 24px; padding: 30px; } .stat-item { border-right: none; border-bottom: 1px solid #e2e8f0; padding-bottom: 24px; width: 100%; } .stat-item:last-child { border-bottom: none; padding-bottom: 0; } .hero-img-container { margin-top: 50px; } .time-slot { min-width: 60px; padding: 8px 10px; } .time-slot span { font-size: 1.3rem; } .proof-img { height: auto; aspect-ratio: 4/3; } .lightbox-close { right: 10px; top: -35px; } }
     </style>
 </head>
 <body id="home">
@@ -217,13 +228,13 @@
     <section id="proof" class="proof-section">
         <div class="container text-center">
             <h2 class="mb-2">Real Members. Real Results.</h2>
-            <p class="text-muted fw-bold" style="font-size: 0.75rem; text-transform: uppercase;">*Proof of earnings from community member submissions. Individual results will vary.</p>
+            <p class="text-muted fw-bold" style="font-size: 0.75rem; text-transform: uppercase;">*Proof of earnings from community member submissions. Click to view.</p>
             <div class="row g-4 mt-4">
                 
                 <div class="col-lg-3 col-md-6">
                     <div class="proof-card">
                         <div class="proof-img-wrapper">
-                            <img src="proof4.webp" alt="Online earning proof screenshot" class="proof-img" loading="lazy">
+                            <img src="IMG_2262.webp" alt="Online earning proof screenshot" class="proof-img" loading="lazy">
                             <span class="proof-overlay-label">Daily Tracking</span>
                         </div>
                         <div class="proof-text">
@@ -275,6 +286,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
             
             <div class="mt-5 text-center">
@@ -315,6 +327,13 @@
         </div>
     </footer>
 
+    <div class="lightbox-overlay" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+            <img src="" alt="Enlarged Proof" class="lightbox-img" id="lightbox-img">
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
@@ -340,7 +359,7 @@
                 TEMPLATE_CONFIG.telegramLink = "https://t.me/+1uVvf-bcREhjYmU1"; 
             }
             
-            // ✅ UPGRADED: Dynamic Dual-Color Brand Name Generation
+            // Dynamic Dual-Color Brand Name Generation
             document.title = TEMPLATE_CONFIG.brandName + " | Exclusive Community";
             document.querySelectorAll('.dyn-brand').forEach(el => {
                 const parts = TEMPLATE_CONFIG.brandName.trim().split(" ");
@@ -443,6 +462,40 @@
             
             const statsSection = document.querySelector('.stats-wrapper');
             if(statsSection) statObserver.observe(statsSection);
+
+            // ✅ ADDED: Lightbox Gallery Logic
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxClose = document.getElementById('lightbox-close');
+            const proofImages = document.querySelectorAll('.proof-img');
+
+            proofImages.forEach(img => {
+                img.addEventListener('click', function() {
+                    lightboxImg.src = this.src;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Stop background scrolling
+                });
+            });
+
+            const closeLightbox = () => {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = ''; // Restore background scrolling
+                setTimeout(() => lightboxImg.src = '', 300); // Clear image after fade out
+            };
+
+            lightboxClose.addEventListener('click', closeLightbox);
+            
+            // Close when clicking the dark background
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    closeLightbox();
+                }
+            });
 
         });
     </script>
