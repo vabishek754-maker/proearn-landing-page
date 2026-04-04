@@ -6,7 +6,7 @@
     
     <meta name="description" content="Join ProEarn Community and start earning online with simple methods. Beginner friendly.">
     <meta property="og:title" content="Start Earning Online | ProEarn Community">
-    <meta property="og:description" content="Join 1000+ members earning daily with simple methods.">
+    <meta property="og:description" content="Join 30000+ members earning daily with simple methods.">
     
     <title id="page-title">Start Earning Online | ProEarn Community</title>
     
@@ -54,7 +54,6 @@
         .hero-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 100%; background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, rgba(255,255,255,0) 70%); z-index: -1; }
         .hero-image { border-radius: 20px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); border: 4px solid white; width: 100%; }
         
-        /* ✅ UPGRADED: Stats Section with Icons and Animation Styles */
         .stats-wrapper { margin-top: -60px; position: relative; z-index: 10; }
         .stats-card { background: var(--bg-white); border-radius: 20px; box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08); padding: 35px 20px; display: flex; justify-content: space-around; align-items: center; border: 1px solid #f1f5f9; }
         .stat-item { text-align: center; flex: 1; border-right: 1px solid #e2e8f0; display: flex; flex-direction: column; align-items: center; }
@@ -137,7 +136,7 @@
                         <div class="d-flex fw-bold text-dark align-items-center">
                             <svg viewBox="0 0 24 24" class="check-icon me-2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                         </div>
-                        <span style="font-size: 0.9rem; font-weight: 700; color: var(--accent-green);">1000+ members already earning</span>
+                        <span style="font-size: 0.9rem; font-weight: 700; color: var(--accent-green);">30000+ members already earning</span>
                     </div>
                     
                     <p style="font-size:14px; color:#64748b; margin-top: 15px; margin-bottom: 0;">
@@ -158,7 +157,7 @@
         <div class="stats-card">
             <div class="stat-item">
                 <svg class="stat-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                <div class="stat-title"><div class="counter" data-target="1000">0</div><span>+</span></div>
+                <div class="stat-title"><div class="counter" data-target="30000">0</div><span>+</span></div>
                 <div class="stat-sub">Active Members</div>
             </div>
             <div class="stat-item">
@@ -379,11 +378,11 @@
                 let h = Math.floor(timeInSecs / 3600), m = Math.floor((timeInSecs % 3600) / 60), s = timeInSecs % 60;
                 hEl.textContent = h < 10 ? '0' + h : h; mEl.textContent = m < 10 ? '0' + m : m; sEl.textContent = s < 10 ? '0' + s : s;
                 timeInSecs--;
-            }, 1000);
+            }, 1000); // 🟢 FIXED: Reset back to 1000ms
 
-            // ✅ UPGRADED: Animated Count-Up Logic for Stats
+            // Animated Count-Up Logic for Stats
             const counters = document.querySelectorAll('.counter');
-            const speed = 200; // Lower is faster
+            const speed = 200; 
 
             const animateCounters = () => {
                 counters.forEach(counter => {
@@ -402,7 +401,6 @@
                 });
             }
 
-            // Intersection Observer to trigger animation when scrolled into view
             const statObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
