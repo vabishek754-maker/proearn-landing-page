@@ -34,6 +34,7 @@
         h1, h2, h3, h4, h5 { font-weight: 800; letter-spacing: -0.03em; color: var(--text-dark); }
         
         .navbar { background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #e2e8f0; padding: 12px 0; transition: all 0.3s ease; }
+        
         .navbar-brand { font-weight: 800; font-size: 22px; color: var(--text-dark); text-decoration: none; }
         .navbar-brand:hover { color: var(--text-dark); }
         .brand-highlight { color: var(--primary); }
@@ -78,7 +79,6 @@
         .proof-img-wrapper { position: relative; overflow: hidden; }
         .proof-overlay-label { position: absolute; top: 12px; right: 12px; background: rgba(15, 23, 42, 0.85); color: #ffffff; padding: 4px 10px; font-size: 0.65rem; font-weight: 700; border-radius: 4px; text-transform: uppercase; backdrop-filter: blur(4px); letter-spacing: 0.5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 2; pointer-events: none; }
         
-        /* ✅ FIX: Added Zoom cursor and hover effect for Lightbox feature */
         .proof-img { width: 100%; height: 220px; object-fit: cover; object-position: center; border-bottom: 1px solid #e2e8f0; background-color: #f1f5f9; cursor: zoom-in; transition: transform 0.4s ease; }
         .proof-img:hover { transform: scale(1.05); }
         
@@ -86,7 +86,6 @@
         .real-member-tag { font-size: 0.7rem; color: var(--accent-green); font-weight: 700; margin-bottom: 6px; display: block; text-transform: uppercase; letter-spacing: 0.5px; }
         .proof-text h5 { font-size: 1rem; margin-bottom: 4px; }
         
-        /* ✅ ADDED: Lightbox Overlay Styles */
         .lightbox-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.95); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.3s ease; backdrop-filter: blur(8px); }
         .lightbox-overlay.active { opacity: 1; visibility: visible; }
         .lightbox-content { position: relative; max-width: 90%; max-height: 90vh; }
@@ -324,6 +323,10 @@
             
             <p class="text-muted mt-4 mb-2 fw-bold" style="font-size: 0.8rem;">Secure • Private • Trusted</p>
             <p style="font-size:12px; color:#64748b; margin: 0;">Contact: support@proearncommunity.com</p>
+
+            <p style="font-size: 12px; color: #94a3b8; margin-top: 20px; margin-bottom: 0;">
+                Designed by <a href="https://abishek-portfolio-five.vercel.app/" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: none; font-weight: 600;">Abishek</a>
+            </p>
         </div>
     </footer>
 
@@ -463,7 +466,7 @@
             const statsSection = document.querySelector('.stats-wrapper');
             if(statsSection) statObserver.observe(statsSection);
 
-            // ✅ ADDED: Lightbox Gallery Logic
+            // Lightbox Gallery Logic
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             const lightboxClose = document.getElementById('lightbox-close');
@@ -473,24 +476,22 @@
                 img.addEventListener('click', function() {
                     lightboxImg.src = this.src;
                     lightbox.classList.add('active');
-                    document.body.style.overflow = 'hidden'; // Stop background scrolling
+                    document.body.style.overflow = 'hidden'; 
                 });
             });
 
             const closeLightbox = () => {
                 lightbox.classList.remove('active');
-                document.body.style.overflow = ''; // Restore background scrolling
-                setTimeout(() => lightboxImg.src = '', 300); // Clear image after fade out
+                document.body.style.overflow = ''; 
+                setTimeout(() => lightboxImg.src = '', 300); 
             };
 
             lightboxClose.addEventListener('click', closeLightbox);
             
-            // Close when clicking the dark background
             lightbox.addEventListener('click', (e) => {
                 if (e.target === lightbox) closeLightbox();
             });
             
-            // Close on Escape key
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && lightbox.classList.contains('active')) {
                     closeLightbox();
